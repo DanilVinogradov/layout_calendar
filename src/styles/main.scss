@@ -15,7 +15,9 @@ body {
 .calendar {
   display: flex;
   flex-wrap: wrap;
-  width: calc((#{$day-size} + #{$border} * 2 + #{$gap}) * 7);
+  padding-left: $padding-left;
+  padding-right: $padding-right;
+  width: calc(#{$day-size} * 7 + #{$gap} * 6 + #{$padding-left} + #{$padding-right});
   gap: $gap;
 
   &__day {
@@ -54,11 +56,10 @@ body {
   fri: 4,
   sat: 5
 ) {
-  .calendar--start-#{$day} .calendar__day:first-child {
+  .calendar--start-day-#{$day} .calendar__day:first-child {
     margin-left: calc(#{$index} * (#{$day-size} + #{$gap}));
   }
 }
-
 @for $length from 28 through 31 {
   .calendar--month-length-#{$length} .calendar__day:nth-child(n + #{$length + 1}) {
     display: none;
