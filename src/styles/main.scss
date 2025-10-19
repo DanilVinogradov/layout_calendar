@@ -6,7 +6,6 @@
 
 body {
   margin: 0;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,12 +17,15 @@ body {
   padding-left: $padding-left;
   padding-right: $padding-right;
   width: calc(#{$day-size} * 7 + #{$gap} * 6 + #{$padding-left} + #{$padding-right});
-  gap: $gap;
+
+  &:nth-child(n + 2) {
+      margin-left: $gap;
+  }
 
   &__day {
     width: $day-size;
     height: $day-size;
-    border: $border solid #000;
+    border: $border solid $border-color;
     background: $color-bg;
     display: flex;
     justify-content: center;
@@ -46,7 +48,6 @@ body {
   }
 }
 
-
 @each $day, $index in (
   sun: 6,
   mon: 0,
@@ -60,6 +61,7 @@ body {
     margin-left: calc(#{$index} * (#{$day-size} + #{$gap}));
   }
 }
+
 @for $length from 28 through 31 {
   .calendar--month-length-#{$length} .calendar__day:nth-child(n + #{$length + 1}) {
     display: none;
